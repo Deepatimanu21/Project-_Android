@@ -1,44 +1,19 @@
-package com.example.todolist;
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.todolist">
 
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
-import androidx.appcompat.app.AppCompatActivity;
-import java.util.ArrayList;
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
 
-public class MainActivity extends AppCompatActivity {
-    private EditText taskInput;
-    private Button addButton;
-    private ListView taskListView;
-    private ArrayList<Task> taskList;
-    private TaskAdapter taskAdapter;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        taskInput = findViewById(R.id.taskInput);
-        addButton = findViewById(R.id.addButton);
-        taskListView = findViewById(R.id.taskListView);
-        taskList = new ArrayList<>();
-        taskAdapter = new TaskAdapter(this, taskList);
-
-        taskListView.setAdapter(taskAdapter);
-
-        addButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String taskText = taskInput.getText().toString();
-                if (!taskText.isEmpty()) {
-                    Task newTask = new Task(taskText);
-                    taskList.add(newTask);
-                    taskAdapter.notifyDataSetChanged();
-                    taskInput.setText("");
-                }
-            }
-        });
-    }
-}
+</manifest>
